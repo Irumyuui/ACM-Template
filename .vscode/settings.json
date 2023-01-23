@@ -1,0 +1,267 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "queue": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "deque": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "limits": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        "vector": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "cfenv": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "cinttypes": "cpp",
+        "codecvt": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "cstdarg": "cpp",
+        "cuchar": "cpp",
+        "cwctype": "cpp",
+        "filesystem": "cpp",
+        "format": "cpp",
+        "forward_list": "cpp",
+        "fstream": "cpp",
+        "functional": "cpp",
+        "future": "cpp",
+        "iomanip": "cpp",
+        "list": "cpp",
+        "locale": "cpp",
+        "map": "cpp",
+        "mutex": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "ratio": "cpp",
+        "regex": "cpp",
+        "scoped_allocator": "cpp",
+        "set": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "stack": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "valarray": "cpp",
+        "xhash": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp",
+        "xtree": "cpp",
+        "coroutine": "cpp",
+        "resumable": "cpp",
+        "*.tcc": "cpp",
+        "memory_resource": "cpp",
+        "string_view": "cpp",
+        "ranges": "cpp",
+        "any": "cpp",
+        "barrier": "cpp",
+        "source_location": "cpp",
+        "latch": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "syncstream": "cpp",
+        "variant": "cpp",
+        "expected": "cpp",
+        "spanstream": "cpp",
+        "stacktrace": "cpp",
+        "version": "cpp",
+        "cdebug": "cpp",
+        "__bit_reference": "cpp",
+        "__bits": "cpp",
+        "__config": "cpp",
+        "__debug": "cpp",
+        "__errc": "cpp",
+        "__hash_table": "cpp",
+        "__locale": "cpp",
+        "__mutex_base": "cpp",
+        "__node_handle": "cpp",
+        "__nullptr": "cpp",
+        "__split_buffer": "cpp",
+        "__string": "cpp",
+        "__threading_support": "cpp",
+        "__tree": "cpp",
+        "__tuple": "cpp",
+        "cassert": "cpp",
+        "cfloat": "cpp"
+    },
+    "cmake.configureOnOpen": false,
+    "errorLens.gutterIconsEnabled": true,
+    "C_Cpp.errorSquiggles": "EnabledIfIncludesResolve", // 在行号的左边显示小错误图标
+    "files.exclude": {
+        "**/*.exe": true, // 隐藏exe文件
+        "**/.cph": true, // 隐藏temp文件夹
+        "**/*.bin": true,
+    },
+    "code-runner.executorMapByFileExtension": {
+
+        ".vb": "cd $dir && vbc /nologo $fileName && $dir$fileNameWithoutExt",
+        ".vbs": "cscript //Nologo",
+        ".scala": "scala",
+        ".jl": "julia",
+        ".cr": "crystal",
+        ".ml": "ocaml",
+        ".exs": "elixir",
+        ".hx": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        ".rkt": "racket",
+        ".scm": "csi -script",
+        ".ahk": "autohotkey",
+        ".au3": "autoit3",
+        ".kt": "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar",
+        ".kts": "kotlinc -script",
+        ".dart": "dart",
+        ".pas": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        ".pp": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        ".d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        ".hs": "runhaskell",
+        ".nim": "nim compile --verbosity:0 --hints:off --run",
+        ".csproj": "dotnet run --project",
+        ".fsproj": "dotnet run --project",
+        ".lisp": "sbcl --script",
+        ".kit": "kitc --run",
+        ".v": "v run",
+        ".vsh": "v run",
+        ".sass": "sass --style expanded",
+        ".cu": "cd $dir && nvcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        ".ring": "ring",
+        ".sml": "cd $dir && sml $fileName",
+        ".cpp": "cd $dir && g++ -std=c++20 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt && start cmd \"/k; $fileNameWithoutExt\"",
+        ".cs": "cls && cd &dir && csc \"$fileName\" && start cmd \"/k; \"\"$fileNameWithoutExt.exe\""
+    },
+    "code-runner.executorMap": {
+        // "cpp": "cd $dir && g++ -target x86_64-pc-windows-gnu -fdiagnostics-color=always -std=c++20 -Wall -DUNICODE -D_UNICODE \"$fileName\" -o \"$fileNameWithoutExt.exe\" && start cmd \"/k; \"\"$fileNameWithoutExt.exe\"",
+        "cpp": "cd $dir && g++ -fdiagnostics-color=always -std=c++17 -Wall -DUNICODE -D_UNICODE \"$fileName\" -o \"$fileNameWithoutExt.exe\" && start cmd \"/k; \"\"$fileNameWithoutExt.exe\"",
+        // "cpp": "cd $dir && g++ -target x86_64-pc-windows-gnu -fdiagnostics-color=always -std=c++20 -Wall -DUNICODE -D_UNICODE \"$fileName\" -o \"$fileNameWithoutExt.exe\"",
+        "cs": "cls && cd &dir && csc \"$fileName\" && start cmd \"/k; \"\"$fileNameWithoutExt.exe\""
+        // "cpp": "cls && cd $dir && clang++ -target x86_64-pc-windows-gnu -std=c++20 -Wall -DUNICODE -D_UNICODE '$fileName' -o '$fileNameWithoutExt.exe' && start pwsh \"$fileNameWithoutExt.exe\""
+    },
+
+    "clangd.fallbackFlags": [
+        "--std=c++17"
+        // "--std=c++20"
+    ],
+    // "clangd.arguments": [
+	// 	// 在后台自动分析文件（基于complie_commands)
+	// 	"--background-index",
+	// 	// 标记compelie_commands.json文件的目录位置
+	// 	// "--compile-commands-dir=build",
+	// 	// 同时开启的任务数量
+	// 	"-j=14",
+	// 	// 告诉clangd用那个clang进行编译，路径参考which clang++的路径
+	// 	// "--query-driver=/usr/bin/clang++",
+    //     "--query-driver=F:/msys64/mingw64/bin/g++",
+	// 	// clang-tidy功能
+	// 	"--clang-tidy",
+	// 	"--clang-tidy-checks=performance-*,bugprone-*",
+	// 	// 全局补全（会自动补充头文件）
+	// 	// "--all-scopes-completion",
+	// 	// 更详细的补全内容
+	// 	"--completion-style=detailed",
+	// 	// 补充头文件的形式
+	// 	"--header-insertion=iwyu",
+	// 	// pch优化的位置
+	// 	"--pch-storage=disk",
+	// ],
+    // "clangd.arguments": [ 
+    // "--header-insertion=never", 
+    // ],
+    "editor.inlayHints.enabled": "on",
+
+    "code-runner.runInTerminal": true,
+    "tabout.disableByDefault": false,
+    // "C_Cpp.inactiveRegionOpacity": 1.0,
+    "terminal.integrated.shellIntegration.enabled": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": false,
+    "prettier.enable": true,
+
+    "editor.tokenColorCustomizations": {
+        "[Sublime Text 4 Theme]": {
+            "variables": "#e2e2e2",
+            // "remoteBackground": "#e2e2e2",
+            // "??"
+        },
+        "[Sublime Monokai]": {
+            // "editorBracketMatch.border": "#ffd700",
+        },
+    },
+    "workbench.colorCustomizations": {
+        "[Sublime Monokai]": {
+            // "editorBracketMatch.border": "#ffd700",
+            // "editor.selectionBackground" : "#642F4D", 
+        //     "editorBracketMatch.border": [
+        //         "height": "1px",
+
+        //     ],
+        //         // "style": 'solid',
+        //         // position: 'bottom',
+        //         // color: '#fff'
+        //       }
+            // "editorBracketMatch.border": {
+            //     style: 'solid',
+            // },
+            // "editorBracketMatch.border": "1px solid bottom #fff"
+            // "editorGroup.focusedEmptyBorder":"#ff0000"
+        },
+        // "editor.wordHighlightStrongBorde": "#ff0000"
+        // "editor.selectionHighlightBackground": "#ff0000"
+    },
+    "editor.tabSize": 4,
+    
+    // "workbench.colorCustomizations": {
+    //     // "statusBarItem.remoteBackground": "#8a5c08"
+    // },
+    // "editorBracketMatch.border": {
+    //     height: ['1px', '2px'],
+    //     style: ['solid', 'dotted'],
+    //     position: ['bottom', 'top'],
+    //     color: ['#fff', '#ddd']
+    //   }
+}
