@@ -2,58 +2,59 @@
 
 using namespace std;
 
-// template <typename T> constexpr T inf = std::numeric_limits<T>::max() / 2;
+template <typename T> constexpr T inf = std::numeric_limits<T>::max() / 2;
 
-// const int N = 114514, M = 1919810;
-// struct Edge {
-// 	int to, cap, next;
-// 	Edge(int to = {}, int cap = {}, int next = -1) : to(to), cap(cap), next(next) {}
-// } edge[M];
-// int head[N], cur[N], lv[N], tt = -1;
-// void init() {
-// 	tt = -1;
-// 	memset(head, -1, sizeof head);
-// }
-// void add_edge(int from, int to, int cap) {
-// 	edge[++ tt] = {to, cap, head[from]}; head[from] = tt;
-// 	edge[++ tt] = {from, 0, head[to]}; head[to] = tt;
-// }
-// int maxflow(int s, int t) {
-// 	auto bfs = [&] {
-// 		std::copy(std::begin(head), std::end(head), std::begin(cur));
-// 		memset(lv, -1, sizeof lv);
-// 		std::queue<int> q;
-// 		q.emplace(s);
-// 		lv[s] = 0;
-// 		while (!q.empty()) {
-// 			int from = q.front();
-// 			q.pop();
-// 			for (int ed = head[from]; ed != -1; ed = edge[ed].next) {
-// 				if (edge[ed].cap > 0 && lv[edge[ed].to] == -1) {
-// 					lv[edge[ed].to] = lv[from] + 1;
-// 					q.emplace(edge[ed].to);
-// 				}
-// 			}
-// 		}
-// 		return lv[t] != -1;
-// 	};
-// 	auto dfs = [&](auto &&dfs, int from, int flow) -> int {
-// 		if (from == t) return flow;
-// 		int lesf = flow;
-// 		for (int ed = cur[from]; ed != -1 && lesf; ed = edge[ed].next) {
-// 			if (edge[ed].cap > 0 && lv[edge[ed].to] == lv[from] + 1) {
-// 				auto ret = dfs(dfs, edge[ed].to, std::min(lesf, edge[ed].cap));
-// 				lesf -= ret;
-// 				edge[ed].cap -= ret;
-// 				edge[ed ^ 1].cap += ret;
-// 			}
-// 		}
-// 		return flow - lesf;
-// 	};
-// 	int flow = 0;
-// 	while (bfs()) flow += dfs(dfs, s, inf<int>);
-// 	return flow;
-// }
+const int N = 114514, M = 1919810;
+struct Edge {
+	int to, cap, next;
+	Edge(int to = {}, int cap = {}, int next = -1) : to(to), cap(cap), next(next) {}
+} edge[M];
+int head[N], cur[N], lv[N], tt = -1;
+void init() {
+	tt = -1;
+	memset(head, -1, sizeof head);
+}
+void add_edge(int from, int to, int cap) {
+	edge[++ tt] = {to, cap, head[from]}; head[from] = tt;
+	edge[++ tt] = {from, 0, head[to]}; head[to] = tt;
+}
+int maxflow(int s, int t) {
+	auto bfs = [&] {
+		std::copy(std::begin(head), std::end(head), std::begin(cur));
+		memset(lv, -1, sizeof lv);
+		std::queue<int> q;
+		q.emplace(s);
+		lv[s] = 0;
+		while (!q.empty()) {
+			int from = q.front();
+			q.pop();
+			for (int ed = head[from]; ed != -1; ed = edge[ed].next) {
+				if (edge[ed].cap > 0 && lv[edge[ed].to] == -1) {
+					lv[edge[ed].to] = lv[from] + 1;
+					q.emplace(edge[ed].to);
+				}
+			}
+		}
+		return lv[t] != -1;
+	};
+	auto dfs = [&](auto &&dfs, int from, int flow) -> int {
+		if (from == t) return flow;
+		int lesf = flow;
+		for (int ed = cur[from]; ed != -1 && lesf; ed = edge[ed].next) {
+			cur[from] = ed;
+			if (edge[ed].cap > 0 && lv[edge[ed].to] == lv[from] + 1) {
+				auto ret = dfs(dfs, edge[ed].to, std::min(lesf, edge[ed].cap));
+				lesf -= ret;
+				edge[ed].cap -= ret;
+				edge[ed ^ 1].cap += ret;
+			}
+		}
+		return flow - lesf;
+	};
+	int flow = 0;
+	while (bfs()) flow += dfs(dfs, s, inf<int>);
+	return flow;
+}
 
 template <typename Type = int32_t>
 struct Dinic_maxflow {

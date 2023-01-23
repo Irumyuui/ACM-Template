@@ -736,4 +736,49 @@ struct MaxFlow_Dinic {
 };
 ```
 
-# 四、杂项
+# 四、字符串
+
+# 五、杂项
+
+## 5.1 二分
+
+```cpp
+// [first, last]
+template <typename Func>
+int binari_search(int first, int last, const Func &check) {
+	int l = first, r = last, ans = -1;
+	while (l <= r) {
+		int mid = l + ((r - l) >> 1);
+		if (check(mid)) {
+			ans = mid;
+			r = mid - 1;
+		} else {
+			l = mid + 1;
+		}
+	}
+	return ans;
+}
+```
+
+## 5.2 三分
+
+```cpp
+// [first, last]
+template <typename Func>
+auto work(double first, double last, const Func &check) {
+	double l = first, r = last;
+	while (r - l >= 1e-7) {
+		double lmid = l + ((r - l) / 3), rmid = l + ((r - l) / 3) * 2;
+		if (check(lmid) < check(rmid)) {
+			r = rmid;
+		} else {
+			l = lmid;
+		}
+	}
+	if (check(l) < check(r)) {
+		return l;
+	} else {
+		return r;
+	}
+}
+```
