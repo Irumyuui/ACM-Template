@@ -8,7 +8,6 @@ struct Matrix {
 	const auto &at(std::size_t R, std::size_t C) const {
 		return data[R * Side + C];
 	}
-	
 	Matrix operator * (const Matrix &that) const {
 		Matrix ret{};
 		for (std::size_t i{}; i < Side; i ++)
@@ -19,12 +18,10 @@ struct Matrix {
 			}
 		return ret;
 	}
-
 	Matrix &operator *= (const Matrix &that) {
 		*this = (*this) * that;
 		return *this;
 	}
-
 	Matrix operator + (const Matrix &that) const {
 		Matrix ret{};
 		for (std::size_t i{}; i < Side; i ++)
@@ -32,14 +29,12 @@ struct Matrix {
 					ret.at(i, j) = (*this).at(i, j) + that.at(i, j);
 		return ret;
 	}
-
 	Matrix &operator += (const Matrix &that) {
 		for (std::size_t i{}; i < Side; i ++)
 			for (std::size_t j{}; j < Side; j ++)
 					(*this).at(i, j) += that.at(i, j);
 		return *this;
 	}
-
 	Matrix &operator ^= (long long pow_i) {
 		Matrix ret{};
 		for (std::size_t i{}; i < Side; i ++)
@@ -50,12 +45,10 @@ struct Matrix {
 		*this = ret;
 		return *this;
 	}
-
 	Matrix operator ^ (long long pow_i) const {
 		Matrix ret = *this;
 		ret ^= pow_i;
 		return ret;
 	}
-
 	std::array<Contained, Side * Side> data;
 };
