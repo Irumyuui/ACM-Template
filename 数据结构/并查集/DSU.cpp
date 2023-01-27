@@ -27,3 +27,37 @@ struct DSU {
 	auto end() { return dad.end(); }
 	const auto end() const { return dad.end(); }
 };
+
+namespace _DSU {
+	struct DSU {
+		int n, cnt;
+		std::vector<int> dad;
+		explicit DSU(int _n = {}) : dad(_n, -1), n(_n), cnt(_n) {}
+		auto assign(int _n) -> void {
+			n = cnt = _n;
+			dad.assign(_n, -1);
+		}
+		auto find(int id) -> int {
+			if (dad[id] <= -1)
+				return dad[id];
+			return dad[id] = find(dad[id]);
+		}
+		auto merge(int a, int b) -> bool {
+			a = find(a); b = find(b);
+			if (a == b) return false;
+			dad[a] += dad[b];
+			dad[b] = a;
+			cnt --;
+			return true;	
+		}
+		auto is_same(int a, int b) -> bool {
+			return find(a) == find(b);
+		}
+		auto set_size(int id) -> int {
+			return -dad[find(id)];
+		}
+		auto set_count() const -> int {
+			return cnt;
+		}
+	};
+}

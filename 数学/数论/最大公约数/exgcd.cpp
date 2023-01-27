@@ -4,7 +4,7 @@ template <typename type>
 concept integral = std::is_integral_v<type>;
 
 template <integral type>
-std::array<type,3> exgcd(type _a, type _b) {
+auto exgcd(type _a, type _b) -> std::array<type,3> {
 	auto __exgcd = [&](auto &&self, type a, type b) -> std::array<type,3> {
 		if (b == 0) {
 			return {a, type{1}, type{0}};

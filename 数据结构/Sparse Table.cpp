@@ -9,7 +9,7 @@ struct SparseTable {
 	template <typename Arr> explicit SparseTable(int _n, T &&_val, const Arr &a, const Func &_func) : n(_n), f(std::__lg(_n + 1) + 1, std::vector<T>(n + 1, _val)), func(_func) {
 		build(a);
 	}
-	template <typename Arr> constexpr void build(const Arr &a) {
+	template <typename Arr> constexpr auto build(const Arr &a) -> void {
 		for (int i = 1; i <= n; i ++) {
 			f[0][i] = a[i];
 		}
@@ -19,12 +19,11 @@ struct SparseTable {
 			}
 		}
 	}
-	T query(int l, int r) {
+	auto query(int l, int r) -> T {
 		int s = std::__lg(r - l + 1);
 		return func(f[s][l], f[s][r - (1 << s) + 1]);
 	}
 };
-
 
 int main() {
 

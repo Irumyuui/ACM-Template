@@ -22,3 +22,25 @@ struct Trie {
 int main() {
 	
 }
+
+namespace _Trie {
+	struct Trie {
+		std::vector<std::array<int,11>> next;
+		void reserve(int _n) {
+			next.reserve(_n);
+		}
+		void assign() {
+			next.assign(1, {});
+		}
+		void insert(const std::vector<int> &v) {
+			int p = 0;
+			for (auto nx : v) {
+				if (next[p][nx] == 0) {
+					next[p][nx] = next.size();
+					next.push_back({});
+				}
+				p = next[p][nx];
+			}
+		}
+	};
+}
