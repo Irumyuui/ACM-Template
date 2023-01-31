@@ -1,21 +1,17 @@
 #include <bits/stdc++.h>
 
-constexpr auto qp(int64_t a, int64_t i, int64_t p) -> int64_t {
-	int64_t ret = 1 % p;
-	a %= p;
-	for (; i > 0; i >>= 1, (a *= a) %= p) 
-		if (i % 2)
-			(ret *= a) %= p;
-	return ret;
-}
-constexpr auto qp(int64_t a, int64_t i) -> int64_t {
-	int64_t ret = 1;
-	for (; i > 0; i >>= 1, a *= a)
-		if (i % 2)
+template <typename T = long long>
+constexpr auto qp(T a, T i, T ret = {1}) -> T {
+	for (; i > 0; i >>= 1, a *= a) 
+		if (i & 1)
 			ret *= a;
 	return ret;
 }
-
-int main() {
-
+template <typename T = long long>
+constexpr auto qp(T a, T i, const T P, T ret = {1}) -> T {
+	a %= P;
+	for (; i > 0; i >>= 1, (a *= a) %= p) 
+		if (i & 1)
+			(ret *= a) %= p;
+	return ret;
 }

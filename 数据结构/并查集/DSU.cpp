@@ -61,3 +61,22 @@ namespace _DSU {
 		}
 	};
 }
+
+int main() {
+	int n;
+	std::vector<int> dad(n + 1, -1);
+	auto Find = [&](auto &&Find, int x) -> int {
+		if (dad[x] > -1) return dad[x] = Find(Find, x);
+		return x;
+	};
+	auto Merge = [&](int a, int b) -> bool {
+		a = Find(Find, a), b = Find(Find, b);
+		if (a == b) return false;
+		dad[a] += dad[b];
+		dad[b] = a;
+		return true;
+	};
+	auto Is_Same = [&](int a, int b) {
+		return Find(Find, a) == Find(Find, b);
+	};
+}

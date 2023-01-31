@@ -3,7 +3,7 @@ using namespace std;
 
 using ll = int64_t;
 
-auto solve(ll first, ll last, ll n) -> ll {
+constexpr auto solve(ll first, ll last, ll n) -> ll {
 	ll ans = 0;
 	for (ll l = first; l <= last; ) {
 		ll r = n / (n / l);

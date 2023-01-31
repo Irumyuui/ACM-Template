@@ -2,7 +2,7 @@
 
 ## 1.1 并查集
 
-### 1.1.1 路径压缩并查集。
+### 1.1.1 路径压缩并查集
 
 ```cpp
 const int N = 1e5 + 10;
@@ -453,6 +453,129 @@ Info query(int l, int r, int id, int ql, int qr) {
 ```
 
 # 二、数论
+
+## 2.1 筛法
+
+### 2.1.1 埃筛
+
+$O(n \log (n))$。
+
+```cpp
+using ll = int64_t;
+const int N = 1e6 + 10;
+std::vector<int> prime;
+std::bitset<N> no_prime;
+void init() {
+	no_prime[0] = no_prime[1] = 1;
+	for (int i = 2; i < N; i ++) {
+		if (!no_prime[i]) {
+			prime.emplace_back(i);
+			for (int64_t j = int64_t(i) * 2; j < N; j += i) {
+				no_prime[j] = 1;
+			}
+		}
+	}
+}
+```
+
+### 2.1.2 线性筛
+
+#### 2.1.2.1 基础线性筛
+
+```cpp
+template <int N, typename T = int32_t>
+struct Euler_bitset {
+	std::vector<T> prime;
+	std::bitset<N> no_prime;
+	Euler_bitset() : no_prime{} {
+		no_prime[0] = no_prime[1] = 1;
+		for (int32_t i = 2; i < N; i ++) {
+			if (!no_prime[i]) prime.emplace_back(i);
+			for (int64_t j : prime) {
+				if (i * j >= N) break;
+				no_prime[i * j] = 1;
+				if (i % j == 0) break;
+			}
+		}
+	}
+	auto begin() { return prime.begin(); }
+	const auto& begin() const { return prime.begin(); }
+	auto end() { return prime.end(); }
+	const auto& end() const { return prime.end(); }
+	const auto operator [] (int idx) const { return !no_prime[idx]; }
+};
+```
+
+#### 2.1.2.2 线性筛求欧拉函数
+
+欧拉函数：小于或等于 $n$ 的正整数中与 $n$ 互质的数目（积性函数）。
+
+```cpp
+template <int N, typename T1 = int32_t, typename T2 = int32_t>
+struct Euler_phi {
+	std::vector<T1> prime;
+	std::bitset<N> no_prime;
+	std::array<T2, N> phi;
+	Euler_phi() : phi{}, no_prime{} {
+		no_prime[0] = no_prime[1] = 1;
+		phi[1] = 1;
+		for (int32_t i = 2; i < N; i ++) {
+			if (!no_prime[i]) {
+				prime.emplace_back(i);
+				phi[i] = T2{i - 1};
+			}
+			for (int64_t j : prime) {
+				if (i * j >= N) break;
+				no_prime[i * j] = 1;
+				if (i % j) {
+					phi[i * j] = phi[i] * phi[j];
+				} else {
+					phi[i * j] = phi[i] * j;
+					break;
+				}
+			}
+		}
+	}
+	auto begin() { return prime.begin(); }
+	const auto& begin() const { return prime.begin(); }
+	auto end() { return prime.end(); }
+	const auto& end() const { return prime.end(); }
+	const auto operator [] (int idx) const { return !no_prime[idx]; }
+};
+```
+
+## 2.2 扩展欧几里得
+
+扩展欧几里得算法需要保证参数一定为非负整数。
+
+```cpp
+using ll = int64_t;
+constexpr auto exgcd(ll a, ll b) -> std::array<ll,3> {
+	if (b == 0) {
+		return {a, 1, 0};
+	} else {
+		auto [d, x, y] = exgcd(b, a % b);
+		return {d, y, x - a / b * y};
+	}
+}
+```
+
+## 2.3 数论分块
+
+求 $\sum_{i=1}^{n} \cfrac{n}{i}$ 。
+
+```cpp
+using ll = long long;
+ll solve(ll n) {
+	ll ret = 0;
+	for (ll l = 1; l <= n; ) {
+		ll r = n / (n / l);
+		ret += (r - l + 1) * (n / l);
+		l = r + 1;
+	}
+	return ret;
+}
+```
 
 # 三、图论
 

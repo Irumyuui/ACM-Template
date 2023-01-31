@@ -20,10 +20,10 @@ void dfs(int from) {
 	inst[from] = true;
 	st.push(from);
 	for (auto to : edge[from]) {
-		if (!dfn[from]) {
+		if (!dfn[to]) {
 			dfs(to);
 			low[from] = min(low[from], low[to]);
-		} else if (inst[from]) {
+		} else if (inst[to]) {
 			low[from] = min(low[from], dfn[to]);
 		}
 	}
