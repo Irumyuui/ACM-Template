@@ -10,5 +10,8 @@ int main() {
 	for (int i = 1, k = -1; i < t.size(); i ++) {
 		while (k > -1 && t[k + 1] != t[i])
 			k = nex[k];
+		if (nex[k + 1] == t[i])
+			k ++;
+		nex[i] = k;
 	}
 }
