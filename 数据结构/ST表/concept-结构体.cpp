@@ -69,7 +69,8 @@ namespace Data_Structure_SparseTable {
 		Merge merge;
 		std::vector<std::vector<Info>> f;
 
-		SparseTable(int _n, const Info &init_v, const Merge &merge_func) : n(_n), merge(merge_func), f(std::__lg(_n) + 1, std::vector<Info>(_n + 1, init_v)) {}
+		SparseTable(int _n, const Info &init_v, const Merge &merge_func) 
+			: n(_n), merge(merge_func), f(std::__lg(_n) + 1, std::vector<Info>(_n + 1, init_v)) {}
 
 		template <typename T, Type_Container<T> Container, Transform_Func<Info, T> Transfrom>
 		auto init(const Container &a, const Transfrom &trans) -> void {
