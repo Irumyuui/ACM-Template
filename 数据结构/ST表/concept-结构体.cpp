@@ -44,7 +44,7 @@ struct SparseTable {
 namespace Data_Structure_SparseTable {
 	template <typename Info_Merge, typename Info>
 	concept Info_Meege_Func = requires(Info_Merge func, Info a, Info b) {
-		{func(a, b)} -> std::same_as<Info>;
+		{func(a, b)} -> std::convertible_to<Info>;
 	};
 	template <typename T_Container, typename T>
 	concept Type_Container = requires(T_Container a, int idx) {
@@ -52,7 +52,7 @@ namespace Data_Structure_SparseTable {
 	};
 	template <typename Transform, typename Tag_Type, typename Type>
 	concept Transform_Func = requires(Transform func, Type a) {
-		{func(a)} -> std::same_as<Tag_Type>;
+		{func(a)} -> std::convertible_to<Tag_Type>;
 	};
 	
 	template <typename Info, Info_Meege_Func<Info> Merge>
