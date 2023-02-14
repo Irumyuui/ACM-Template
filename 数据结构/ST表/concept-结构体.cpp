@@ -48,15 +48,7 @@ namespace Data_Structure_SparseTable {
 	};
 	template <typename T_Container, typename T>
 	concept Type_Container = requires(T_Container a, int idx) {
-		{a[idx]} -> std::same_as<T>;
-	} || requires(T_Container a, int idx) {
-		{a[idx]} -> std::same_as<T&>;
-	} || requires(T_Container a, int idx) {
-		{a[idx]} -> std::same_as<T&&>;
-	} || requires(T_Container a, int idx) {
-		{a[idx]} -> std::same_as<const T&>;
-	} || requires(T_Container a, int idx) {
-		{a[idx]} -> std::same_as<const T&&>;
+		{a[idx]} -> std::convertible_to<T>;
 	};
 	template <typename Transform, typename Tag_Type, typename Type>
 	concept Transform_Func = requires(Transform func, Type a) {
