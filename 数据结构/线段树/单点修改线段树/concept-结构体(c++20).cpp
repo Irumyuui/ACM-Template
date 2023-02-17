@@ -8,7 +8,7 @@ concept __Info = requires(T a, T b) {
 };
 template <typename Func, typename RetT, typename T>
 concept __InitFunc = requires(Func init_func, T value) {
-	{init_func(value)} -> std::same_as<RetT>;
+	{init_func(value)} -> std::convertible_to<RetT>;
 };
 template <typename T>
 concept __Arr = requires(T a, int idx) {
@@ -24,7 +24,8 @@ struct SegmentTree {
 	std::vector<Info> seg;
 	int n;
 	
-	SegmentTree(int _n, const Info &v) : seg(_n * 4, v), n(_n) {}
+	SegmentTree(int _n, const Info &v)
+		: seg(_n * 4, v), n(_n) {}
 
 	template <typename T, __Arr Arr, __InitFunc<Info,T> Trans>
 	void build(const Arr &a, const Trans &trans_func) {
