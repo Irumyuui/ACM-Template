@@ -153,3 +153,4 @@ namespace __SegTree {
 	};
 
 } // segment tree
+using __SegTree::SegmentTree;
