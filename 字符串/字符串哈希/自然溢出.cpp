@@ -16,7 +16,7 @@ void init(int n) {
 }
 
 uint64_t substr_hash(int l, int r) {
-	return hs[r] - hs[l] * p[r - l + 1];
+	return hs[r] - hs[l - 1] * p[r - l + 1];
 }
 
 int main() {

@@ -24,7 +24,7 @@ void get_str_hash(int n) {
 }
 
 uint64_t substr_hash(int l, int r) {
-	return ((hs[r] - hs[l] * p[r - l + 1] % M) + M % M);
+	return ((hs[r] - hs[l - 1] * p[r - l + 1] % M) + M % M);
 }
 
 int main() {
