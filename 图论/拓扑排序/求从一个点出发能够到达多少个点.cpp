@@ -15,7 +15,7 @@ int main() {
 		ind[u] ++;
 	}
 
-	std::vector<std::bitset<30000>> cnt(n);
+	std::vector<std::bitset<3000>> cnt(n);
 	std::vector<int> q;
 	q.reserve(n);
 	for (int i = 0; i < n; i ++) {
