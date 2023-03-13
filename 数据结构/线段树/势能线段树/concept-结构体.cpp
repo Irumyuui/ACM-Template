@@ -29,7 +29,7 @@ namespace __Rgs_SegTree {
 		
 		template <typename T, __Arr Arr, __InitFunc<Info,T> Trans>
 		auto build(const Arr &a, const Trans &trans_func) -> void {
-			static auto dfs = [&](auto &&self, int l, int r, int id) -> void {
+			auto dfs = [&](auto &&self, int l, int r, int id) -> void {
 				if (l == r) {
 					seg[id] = trans_func(a[l]);
 				} else {
@@ -44,7 +44,7 @@ namespace __Rgs_SegTree {
 
 		template <typename T, __OptFunc<Info, T> OptFunc>
 		auto modify(int _l, int _r, const T &d, const OptFunc &opt_func) -> bool {
-			static auto dfs = [&](auto &&self, int l, int r, int id, int ml, int mr) -> bool {
+			auto dfs = [&](auto &&self, int l, int r, int id, int ml, int mr) -> bool {
 				if (seg[id].ok == true)
 					return true;
 				if (l == ml && r == mr) {
@@ -78,7 +78,7 @@ namespace __Rgs_SegTree {
 		}
 
 		auto query(int _l, int _r) -> Info {
-			static auto dfs = [&](auto &&self, int l, int r, int id, int ql, int qr) -> Info {
+			auto dfs = [&](auto &&self, int l, int r, int id, int ql, int qr) -> Info {
 				if (l == ql && r == qr) {
 					return seg[id];
 				} else {

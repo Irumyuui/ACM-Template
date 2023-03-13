@@ -94,7 +94,7 @@ namespace __SegTree {
 		 */
 		template <typename T, __Arr Arr, __InitFunc<Info,T> Trans>
 		void build(const Arr &a, const Trans &trans_func) {
-			static auto dfs = [&](auto &&self, int l, int r, int id) -> void {
+			auto dfs = [&](auto &&self, int l, int r, int id) -> void {
 				if (l == r) {
 					seg[id] = trans_func(a[l]);
 				} else {
@@ -117,7 +117,7 @@ namespace __SegTree {
 		 */
 		template <typename T, __OptFunc<Info,T> OptFunc>
 		void change(int tag, T d, const OptFunc &opt_func) {
-			static auto dfs = [&](auto &&self, int l, int r, int id) -> void {
+			auto dfs = [&](auto &&self, int l, int r, int id) -> void {
 				if (l == r) {
 					seg[id] = opt_func(seg[id], d);
 				} else {
@@ -134,7 +134,7 @@ namespace __SegTree {
 		}
 
 		Info query(int _ql, int _qr) {
-			static auto dfs = [&](auto &&self, int l, int r, int id, int ql, int qr) -> Info {
+			auto dfs = [&](auto &&self, int l, int r, int id, int ql, int qr) -> Info {
 				if (l == ql && r == qr) {
 					return seg[id];
 				} else {

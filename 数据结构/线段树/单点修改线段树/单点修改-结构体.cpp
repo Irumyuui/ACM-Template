@@ -23,7 +23,7 @@
 
 // 	template <typename TagetType, typename TagetArr = std::vector<TagetType>, typename Init = Info(*)(TagetType)>
 // 	void build(const TagetArr &a, const Init &init_func) {
-// 		static auto build = [&](auto &&dfs, int l, int r, int id) -> void {
+// 		auto build = [&](auto &&dfs, int l, int r, int id) -> void {
 // 			if (l == r) {
 // 				seg[id].val = init_func(a[l]);
 // 			} else {
@@ -38,7 +38,7 @@
 
 // 	template <typename Ctype, typename Cinit = void(*)(Info&,Ctype)>
 // 	void change(int tag, const Ctype &c_val, const Cinit &cinit_func) {
-// 		static auto change = [&](auto &&dfs, int l, int r, int id) -> void {
+// 		auto change = [&](auto &&dfs, int l, int r, int id) -> void {
 // 			if (l == r) {
 // 				cinit_func(seg[id].val, c_val);
 // 			} else {
@@ -54,7 +54,7 @@
 // 	}
 
 // 	Info query(int ql, int qr) {
-// 		static auto query = [&](auto &&dfs, int l, int r, int id, int ql, int qr) -> Info {
+// 		auto query = [&](auto &&dfs, int l, int r, int id, int ql, int qr) -> Info {
 // 			if (l == ql && r == qr)
 // 				return seg[id].val;
 // 			int mid = l + ((r - l) >> 1);
@@ -86,7 +86,7 @@ struct SegTree {
 
 	template <typename Array, typename InitFunc = decltype([](const auto &val) -> Info { return Info{val}; })>
 	void build(const Array &a, const InitFunc &init_func) {
-		static auto build = [&](auto &&dfs, int l, int r, int id) -> void {
+		auto build = [&](auto &&dfs, int l, int r, int id) -> void {
 			if (l == r) {
 				seg[id].val = init_func(a[l]);
 			} else {
@@ -101,7 +101,7 @@ struct SegTree {
 
 	template <typename Opt = decltype([](Info &node) -> void {})>
 	void change(int tag, const Opt &opt) {
-		static auto change = [&](auto &&dfs, int l, int r, int id) -> void {
+		auto change = [&](auto &&dfs, int l, int r, int id) -> void {
 			if (l == r) {
 				opt(seg[id].val);
 			} else {
@@ -118,7 +118,7 @@ struct SegTree {
 	}
 
 	Info query(int _ql, int _qr) {
-		static auto query = [&](auto &&dfs, int l, int r, int id, int ql, int qr) -> Info {
+		auto query = [&](auto &&dfs, int l, int r, int id, int ql, int qr) -> Info {
 			if (l == ql && r == qr) {
 				return seg[id].val;
 			} else {
