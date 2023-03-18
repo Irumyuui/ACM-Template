@@ -81,6 +81,18 @@ struct DSU {
 	}
 };
 
+// namespace DS {
+// 	template <typename Info>
+// 		requires requires(Info a, Info b) { 
+// 			{a + b} -> std::convertible_to<Info>; 
+// 			{a.fa} -> std::same_as<int>;
+// 		}
+// 	struct DSU {
+// 		std::vector<Info> dad;
+// 		DSU(int _size, const Info &_base) : dad(_size, _base) {}
+// 	};
+// }
+
 int main() {
 	int n;
 	std::vector<int> dad(n + 1, -1);
