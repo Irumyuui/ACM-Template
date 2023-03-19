@@ -1,6 +1,30 @@
 #include <bits/stdc++.h>
 
 namespace Data_Structure_SparseTable {
+	namespace ST_Info {
+		template <typename Value>
+			requires requires(Value v) { {std::max<Value>(v, v)}; }
+		struct Max_Info {
+			Value val;
+			Max_Info(const Value &v = {}) : val{v} {}
+			constexpr auto operator <=> (const Max_Info &that) const = default;
+			constexpr auto operator + (const Max_Info &x) const -> Max_Info {
+				return Max_Info{ std::max<Value>({val, x.val}) };
+			}
+		};
+
+		template <typename Value>
+			requires requires(Value v) { {std::min<Value>(v, v)}; }
+		struct Min_Info {
+			Value val;
+			Min_Info(const Value &v = {}) : val{v} {}
+			constexpr auto operator <=> (const Min_Info &that) const = default;
+			constexpr auto operator + (const Min_Info &x) const -> Min_Info {
+				return Min_Info{ std::min<Value>({val, x.val}) };
+			}
+		};
+	};
+
 	namespace __DS_ST_SP {
 		template <typename Ret>
 		struct Translate {
