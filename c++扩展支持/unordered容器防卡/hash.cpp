@@ -27,4 +27,4 @@ template <typename Value, typename __Hs = __B_HASH::Splitmix64_Hash<Value>>
 #if __cplusplus >= 202002L
 	requires std::is_integral_v<Value>
 #endif
-using Hash_Set = std::unordered_set<Value, __Hs>;	
+using Hash_Set = std::unordered_set<Value, __Hs>;
