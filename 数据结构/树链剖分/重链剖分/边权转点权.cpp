@@ -28,6 +28,8 @@ void build(int root) {
 		evid[eid] = from;
 		veid[from] = eid;
 		vw[from] = ew;
+		siz[from] = 1;
+		son[from] = -1;
 		for (auto [to, eid, ew] : adj[from]) {
 			if (dep[to] == -1) {
 				dep[to] = dep[from] + 1;
