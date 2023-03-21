@@ -27,7 +27,7 @@ bool spfa(int sta) {
 			if (dis[to] > dis[from] + w) {
 				dis[to] = dis[from] + w;
 				cnt[to] = cnt[from] + 1;
-				if (cnt[to] > n - 1) {
+				if (cnt[to] > n - 1) {  // 最短路最长也就 n-1 条边
 					return false;
 				}
 				if (!vis[to]) {
