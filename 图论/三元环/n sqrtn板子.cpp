@@ -6,6 +6,7 @@ using ll = int64_t;
 auto Solve() -> void {
 	int n, m;
 	cin >> n >> m;
+	
 	vector<pair<int,int>> edge(m);
 	vector<int> deg(n);
 	for (auto &[u,v] : edge) {
@@ -13,6 +14,7 @@ auto Solve() -> void {
 		u --, v --;
 		deg[u] ++, deg[v] ++;
 	}
+
 	vector g(n, vector<int>());
 	for (auto [u,v] : edge) {
 		if (deg[u] > deg[v]) {
@@ -23,6 +25,7 @@ auto Solve() -> void {
 			g[min(u,v)].emplace_back(max(u,v));
 		}
 	}
+
 	ll ans = {};
 	for (int i = 0; i < n; i ++) {
 		vector<bool> tod(n);
