@@ -7,6 +7,8 @@ int f[N][N];
 int n;
 
 void floyd() {
+	// 按 1 到 n 的顺序 枚举加入的点
+	// 也可以按其他顺序
 	for (int k = 1; k <= n; k ++)
 		for (int i = 1; i <= n; i ++)
 			for (int j = 1; j <= n; j ++)
