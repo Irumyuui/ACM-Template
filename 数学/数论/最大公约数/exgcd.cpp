@@ -23,3 +23,16 @@ type inv(type a, type mod) {
 	if (a_inv < mod) a_inv += mod;
 	return a_inv;
 }
+
+namespace __BASE {
+	using ll = int64_t;
+	
+	std::tuple<ll,ll,ll> exgcd(ll a, ll b) {
+		if (b == 0) {
+			return {a, 1, 0};
+		} else {
+			auto [d, x, y] = exgcd(b, a % b);
+			return {d, y, x - a / b * y};
+		}
+	}
+}
