@@ -1,97 +1,68 @@
 #include <bits/stdc++.h>
 
-// struct DSU {
-// 	int32_t n, cnt;
-// 	std::vector<int32_t> dad;
-// 	explicit DSU(const int32_t _n) : dad(_n, -1), n(_n), cnt(_n) {}
-// 	int32_t find(int32_t x) {
-// 		if (dad[x] > -1) 
-// 			return dad[x] = find(dad[x]);
-// 		return x;
-// 	}
-// 	bool merge(int32_t a, int32_t b) {
-// 		a = find(a); b = find(b);
-// 		if (a == b)
-// 			return false;
-// 		dad[a] += dad[b];
-// 		dad[b] = a;
-// 		-- cnt;
-// 		return true;
-// 	}
-// 	const auto count() const { return cnt; }
-// 	bool is_same(int a, int b) { return find(a) == find(b); }
-// 	auto count(int32_t x) { return dad[find(x)]; }
-// 	auto& operator [] (int32_t x) { return dad[find(x)]; }
-// 	auto begin() { return dad.begin(); }
-// 	const auto begin() const { return dad.begin(); }
-// 	auto end() { return dad.end(); }
-// 	const auto end() const { return dad.end(); }
-// };
-
-// namespace _DSU {
-// 	struct DSU {
-// 		int n, cnt;
-// 		std::vector<int> dad;
-// 		explicit DSU(int _n = {}) : dad(_n, -1), n(_n), cnt(_n) {}
-// 		auto assign(int _n) -> void {
-// 			n = cnt = _n;
-// 			dad.assign(_n, -1);
-// 		}
-// 		auto find(int id) -> int {
-// 			if (dad[id] <= -1)
-// 				return dad[id];
-// 			return dad[id] = find(dad[id]);
-// 		}
-// 		auto merge(int a, int b) -> bool {
-// 			a = find(a); b = find(b);
-// 			if (a == b) return false;
-// 			dad[a] += dad[b];
-// 			dad[b] = a;
-// 			cnt --;
-// 			return true;	
-// 		}
-// 		auto is_same(int a, int b) -> bool {
-// 			return find(a) == find(b);
-// 		}
-// 		auto set_size(int id) -> int {
-// 			return -dad[find(id)];
-// 		}
-// 		auto set_count() const -> int {
-// 			return cnt;
-// 		}
-// 	};
-// }
-
 struct DSU {
 	std::vector<int> dad;
-	DSU(int n) : dad(n, -1) {}
+	int dcnt;
+	explicit DSU(int n) : dcnt{n}, dad(n, -1) {}	
 	auto find(int id) -> int {
-		if (dad[id] <= -1) return id;
+		if (dad[id] <= -1) {
+			return id;
+		}
 		return dad[id] = find(dad[id]);
 	}
 	auto merge(int a, int b) -> bool {
 		a = find(a); b = find(b);
-		if (a == b) return false;
+		if (a == b) {
+			return false;
+		}
 		dad[a] += dad[b];
 		dad[b] = a;
+		dcnt --;
 		return true;
 	};
 	auto is_same(int a, int b) -> bool {
 		return find(a) == find(b);
 	}
+	auto count() const -> int {
+		return dcnt;
+	}
+	auto count(int x) const -> int {
+		return -dad[x];		
+	}
 };
 
-// namespace DS {
-// 	template <typename Info>
-// 		requires requires(Info a, Info b) { 
-// 			{a + b} -> std::convertible_to<Info>; 
-// 			{a.fa} -> std::same_as<int>;
-// 		}
-// 	struct DSU {
-// 		std::vector<Info> dad;
-// 		DSU(int _size, const Info &_base) : dad(_size, _base) {}
-// 	};
-// }
+struct DSUS {
+	std::vector<std::pair<int,std::set<int>>> dad;
+	int dcnt;
+	DSUS(int n) : dad(n, {-1, {}}), dcnt{n} {}
+	auto find(int x) -> int {
+		if (dad[x].first <= -1) {
+			return dad[x].first;
+		} else {
+			return dad[x].first = find(dad[x].first);
+		}
+	}
+	auto merge(int a, int b) -> bool {
+		a = find(a); b = find(b);
+		if (a == b) {
+			return false;
+		}
+		if (dad[a].second.size() < dad[b].second.size()) {
+			swap(dad[a], dad[b]);
+		}
+		dad[a].second.merge(dad[b].second);
+		dad[a].second.emplace(b);
+		dad[a].first += dad[b].first;
+		dad[b] = {a, {}};
+		return true;
+	}
+	auto is_same(int a, int b) -> bool {
+		return find(a) == find(b);
+	}
+	auto count() const -> int {
+		return dcnt;
+	}
+};
 
 int main() {
 	int n;
