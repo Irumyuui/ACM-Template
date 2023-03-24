@@ -68,7 +68,7 @@ int main() {
 	int n;
 	std::vector<int> dad(n + 1, -1);
 	auto Find = [&](auto &&Find, int x) -> int {
-		if (dad[x] > -1) return dad[x] = Find(Find, x);
+		if (dad[x] > -1) return dad[x] = Find(Find, dad[x]);
 		return x;
 	};
 	auto Merge = [&](int a, int b) -> bool {
