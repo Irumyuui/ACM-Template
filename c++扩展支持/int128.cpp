@@ -53,3 +53,4 @@ namespace ioInt128 {
 };
 using namespace ioInt128;
 using i128 = __int128_t;
+using ill = __int128_t;
