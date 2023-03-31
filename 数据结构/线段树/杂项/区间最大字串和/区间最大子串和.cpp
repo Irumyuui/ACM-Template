@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-namespace Royal_Guard{
+namespace Royal_Guard {
 	using ll = int64_t;
 	const int N = 2e5 + 10;
 
@@ -29,7 +29,7 @@ namespace Royal_Guard{
 	template <typename T>
 	void build(int l, int r, int id, const T &a) {
 		if (l == r) {
-			seg[id].val = {a[l], a[l], a[l], a[l]};
+			seg[id].val = {a[l], std::max<ll>(0, a[l]), std::max<ll>(0, a[l]), std::max<ll>(0, a[l])};
 		} else {
 			int mid = l + ((r - l) >> 1);
 			build(l, mid, id * 2, a);
@@ -53,7 +53,6 @@ namespace Royal_Guard{
 		}
 	}
 }
-
 
 int main() {
 
