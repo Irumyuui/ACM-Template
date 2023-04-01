@@ -25,3 +25,4 @@ namespace Royal_Guard::IO::Int128 {
 	}
 	using ill = __int128_t;
 }
+using namespace Royal_Guard::IO::Int128;
