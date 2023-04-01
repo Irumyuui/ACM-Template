@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace Data_Structure_Fenwick_Tree {
+namespace Royal_Guard::Data_Structure::Requires_DS::Fenwick_Tree {
 	template <typename Transform, typename Tag_Type, typename Type>
 	concept Transform_Func = requires(Transform func, Type a) {
 		{func(a)} -> std::same_as<Tag_Type>;
@@ -40,3 +40,4 @@ namespace Data_Structure_Fenwick_Tree {
 		}
 	};
 }
+using Royal_Guard::Data_Structure::Requires_DS::Fenwick_Tree::Fenwick_Tree;
