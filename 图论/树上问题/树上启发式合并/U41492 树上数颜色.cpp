@@ -52,11 +52,13 @@ auto Main() -> void {
 
 	vector<int> ret(n + 1);
 	auto dfs2 = [&](auto &&dfs, int from, int fa, bool keep) -> void {
+		// 不保留的遍历轻儿子
 		for (auto to : adj[from]) {
 			if (to != fa && to != son[from]) {
 				dfs(dfs, to, from, false);
 			}
 		}
+		// 保留地遍历重儿子
 		if (son[from] != -1) {
 			dfs(dfs, son[from], from, true);
 			for (auto to : adj[from]) {
@@ -67,8 +69,10 @@ auto Main() -> void {
 				}
 			}
 		}
+		// 计算该点结果
 		add(from);
 		ret[from] = tot_col;
+		// 如果该点不保留 清空所有信息（整个的，不是这个子树的）
 		if (!keep) {
 			for (int i = dfn[from]; i <= dfn[from] + siz[from] - 1; i ++) {
 				del(rnk[i]);
