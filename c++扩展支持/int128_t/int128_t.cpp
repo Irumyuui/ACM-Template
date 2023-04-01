@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace Royal_Guard {
-namespace IO {
-namespace Int128 {
+namespace Royal_Guard::IO::Int128 {
 	std::istream& operator >> (std::istream &is, __int128_t &x) {
 		x = 0;
 		std::string s; is >> s;
@@ -26,6 +24,4 @@ namespace Int128 {
 		return os << s;
 	}
 	using ill = __int128_t;
-}
-}
 }
