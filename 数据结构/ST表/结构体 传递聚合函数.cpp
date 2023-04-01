@@ -41,7 +41,7 @@ struct SparseTable {
 }
 // using __SparseTable::SparseTable;
 
-namespace Data_Structure_SparseTable {
+namespace Royal_Guard::Data_Structure::Requires_DS::Merge_Init_SparseTable {
 	template <typename Info_Merge, typename Info>
 	concept Info_Meege_Func = requires(Info_Merge func, Info a, Info b) {
 		{func(a, b)} -> std::convertible_to<Info>;
@@ -82,4 +82,4 @@ namespace Data_Structure_SparseTable {
 		}
 	};
 }
-using Data_Structure_SparseTable::SparseTable;
+using Royal_Guard::Data_Structure::Requires_DS::Merge_Init_SparseTable::SparseTable;

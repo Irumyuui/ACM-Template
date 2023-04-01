@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace Royal_Guard::Data_Structure::Requires_DS::SparseTable {
+namespace Royal_Guard::Data_Structure::Requires_DS::Info_Init_SparseTable {
 	namespace ST_Info {
 		template <typename Value>
 			requires requires(Value v) { {std::max<Value>(v, v)}; }
@@ -68,4 +68,4 @@ namespace Royal_Guard::Data_Structure::Requires_DS::SparseTable {
 		}
 	};
 }
-using Royal_Guard::Data_Structure::Requires_DS::SparseTable::SparseTable;
+using Royal_Guard::Data_Structure::Requires_DS::Info_Init_SparseTable::SparseTable;
