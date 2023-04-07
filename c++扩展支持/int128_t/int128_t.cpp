@@ -24,5 +24,6 @@ namespace Royal_Guard::IO::Int128 {
 		return os << s;
 	}
 	using ill = __int128_t;
+	using i128 = __int128_t;
 }
 using namespace Royal_Guard::IO::Int128;
