@@ -23,11 +23,12 @@ void Main() {
 		for (auto to : adj[from]) {
 			if (dfn[to] == -1) {
 				dfs(dfs, to);
-				low[from] = min(low[from], low[to]);
+				low[from] = min(low[from], low[to]);  // 子树
 			} else if (inst[to]) {
-				low[from] = min(low[from], dfn[to]);
+				low[from] = min(low[from], dfn[to]);  // 尝试绕过这个点
 			}
 		}
+		// 如果这个点 low == dfn 那么表示以这个点为根的子树没法绕过这个点 产生一个 SCC
 		if (low[from] == dfn[from]) {
 			int now = 0;
 			++ scc_cnt;
