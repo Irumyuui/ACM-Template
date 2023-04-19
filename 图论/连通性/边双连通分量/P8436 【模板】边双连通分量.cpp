@@ -22,11 +22,12 @@ int main() {
 		for (auto [to, neid] : adj[from]) {
 			if (dfn[to] == -1) {
 				dfs(dfs, to, neid);
-				low[from] = min(low[from], low[to]);
-			} else if (neid != eid) {
-				low[from] = min(low[from], dfn[to]);
+				low[from] = min(low[from], low[to]);  // 子树
+			} else if (neid != eid) {  // 判掉该边的返回边
+				low[from] = min(low[from], dfn[to]);  // 可能的向上回溯
 			}
 		}
+		// dfn == low 意味着搜索子树没办法绕到上面 意味着该边割掉后图连通性改变
 		if (dfn[from] == low[from] && eid != -1) {
 			is_bridge[eid] = true;
 		}
