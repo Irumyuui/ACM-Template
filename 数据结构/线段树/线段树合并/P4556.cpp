@@ -61,19 +61,21 @@ pair<int,int> Query(int l, int r, int id) {
 	}
 }
 
-// Merge Tree b to Tree a
-int Merge(int a, int b, int l, int r) {
-	if (!a) return b;
-	if (!b) return a;
-	if (l == r) {
-		seg[a].val.val = seg[a].val.val + seg[b].val.val;
-		return a;
+// Merge Tree b into Tree a
+void Merge(int &a, int &b, int l, int r) {
+	if (!a) {
+		a = b;
+	} else if (!b) {
+		return;
 	} else {
-		int mid = l + ((r - l) >> 1);
-		seg[a].lc = Merge(seg[a].lc, seg[b].lc, l, mid);
-		seg[a].rc = Merge(seg[a].rc, seg[b].rc, mid + 1, r);
-		Rise(a);
-		return a;
+		if (l == r) {
+			seg[a].val.val += seg[b].val.val;
+		} else {
+			int mid = l + ((r - l) >> 1);
+			Merge(seg[a].lc, seg[b].lc, l, mid);
+			Merge(seg[a].rc, seg[b].rc, mid + 1, r);
+			Rise(a);
+		}
 	}
 }
 
@@ -161,7 +163,7 @@ void Main() {
 		for (auto to : adj[from]) {
 			if (dep[to] == dep[from] + 1) {
 				dfs(dfs, to);
-				root[from] = Merge(root[from], root[to], L, R);
+				Merge(root[from], root[to], L, R);
 			}
 		}
 		auto ret = Query(L, R, root[from]);
