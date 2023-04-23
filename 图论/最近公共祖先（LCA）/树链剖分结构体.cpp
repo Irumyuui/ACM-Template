@@ -29,7 +29,7 @@ struct LowestCommonAncestorGraph {
 		std::fill(std::begin(fa), std::end(fa), -1);
 	}
 
-	void Build(int root) {
+	void Build(int root, int stamp = 1) {
 		auto dfs1 = [&](auto &&dfs, int from) -> void {
 			son[from] = -1;
 			siz[from] = 1;
@@ -45,7 +45,7 @@ struct LowestCommonAncestorGraph {
 				}	
 			}
 		};
-		auto dfs2 = [&, stamp{dep[root]=0}](auto &&dfs, int from, int root) mutable -> void {
+		auto dfs2 = [&](auto &&dfs, int from, int root) -> void {
 			top[from] = root;
 			dfn[from] = ++ stamp;
 			rnk[stamp] = from;
@@ -59,6 +59,7 @@ struct LowestCommonAncestorGraph {
 				}
 			}
 		};
+		dep[root] = 0;
 		dfs1(dfs1, root);
 		dfs2(dfs2, root, root);
 	}
