@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 
 namespace Trickster {
-	template <typename _Tp, typename Operator>
+	template <typename _Tp, typename _Operator>
 	class PrefixFenwickTree {
 	public:
 		using Type = _Tp;
+		using Operator = _Operator;
 
 	private:
 		constexpr static std::size_t Lowbit(std::size_t x) noexcept {
@@ -41,4 +42,8 @@ namespace Trickster {
 		const Operator opt;
 	};
 }
+
 using Trickster::PrefixFenwickTree;
+
+template <typename _Tp, typename _Operator>
+using FenwickTree = Trickster::PrefixFenwickTree<_Tp, _Operator>;
