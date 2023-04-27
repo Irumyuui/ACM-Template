@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 namespace Trickster {
-	template <typename _Tp>
+	template <typename _Tp, typename Operator>
 	class FenwickTree {
 	public:
 		using Type = _Tp;
@@ -12,17 +12,16 @@ namespace Trickster {
 		}
 
 	public:
-		explicit FenwickTree(std::size_t _n, Type &&initValue = {}) : bit(_n + 1, initValue), n{_n} {}
+		explicit FenwickTree(std::size_t _n, Type &&initValue, const Operator &opt)
+			: bit(_n + 1, initValue), n{_n}, opt{opt} {}
 
-		template <typename Operator>
-		void Update(std::size_t pos, Type &&value, const Operator &opt) {
+		void Set(std::size_t pos, Type &&value) {
 			for (std::size_t i = pos; i <= n; i += Lowbit(i)) {
 				opt(bit[i], value);
 			}
 		}
 
-		template <typename Operator>
-		Type Ask(std::size_t pos, Type result, const Operator &opt) {
+		Type Get(std::size_t pos, Type result = Type{}) {
 			for (std::size_t i = pos; i > 0; i -= Lowbit(i)) {
 				opt(result, bit[i]);
 			}
@@ -39,6 +38,7 @@ namespace Trickster {
 	private:
 		std::vector<Type> bit;
 		std::size_t n;
+		const Operator opt;
 	};
 }
 using Trickster::FenwickTree;
