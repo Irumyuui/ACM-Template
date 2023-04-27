@@ -22,7 +22,7 @@ namespace Trickster {
 			}
 		}
 
-		Type Get(std::size_t pos, Type result = Type{}) {
+		Type Get(std::size_t pos, Type result = Type{}) const {
 			for (std::size_t i = pos; i > 0; i -= Lowbit(i)) {
 				opt(result, bit[i]);
 			}
