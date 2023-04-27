@@ -2,7 +2,7 @@
 
 namespace Trickster {
 	template <typename _Tp, typename Operator>
-	class FenwickTree {
+	class PrefixFenwickTree {
 	public:
 		using Type = _Tp;
 
@@ -12,7 +12,7 @@ namespace Trickster {
 		}
 
 	public:
-		explicit FenwickTree(std::size_t _n, Type &&initValue, const Operator &opt)
+		explicit PrefixFenwickTree(std::size_t _n, Type &&initValue, const Operator &opt)
 			: bit(_n + 1, initValue), n{_n}, opt{opt} {}
 
 		void Set(std::size_t pos, Type &&value) {
@@ -41,4 +41,4 @@ namespace Trickster {
 		const Operator opt;
 	};
 }
-using Trickster::FenwickTree;
+using Trickster::PrefixFenwickTree;
