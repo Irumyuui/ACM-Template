@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace __SegTree {
+namespace Trickster {
 
 	namespace Support {
 		template <typename Value>
@@ -153,4 +153,4 @@ namespace __SegTree {
 	};
 
 } // segment tree
-using __SegTree::SegmentTree;
+using Trickster::SegmentTree;
