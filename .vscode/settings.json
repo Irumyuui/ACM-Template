@@ -274,7 +274,7 @@
 		// https://zhuanlan.zhihu.com/p/84876003
 		// "--compile-commands-dir=build",
 		// 同时开启的任务数量
-		"-j=14",
+		// "-j=14",
 		// 告诉clangd用那个clang进行编译，路径参考which clang++的路径
 		// "--query-driver=/usr/bin/clang++-16",
 		// clang-tidy功能
