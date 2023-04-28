@@ -20,7 +20,7 @@ namespace Trickster {
 			}
 
 		public:
-			explicit PrefixFenwickTree(std::size_t _n, Type &&initValue = {}, const OperatorType &opt = OperatorType{})
+			explicit PrefixFenwickTree(int _n, Type &&initValue = {}, const OperatorType &opt = OperatorType{})
 				: bit(_n + 1, initValue), n{_n}, opt{opt} {}
 
 			void Assign(std::size_t _n, const Type &value) {
@@ -28,14 +28,14 @@ namespace Trickster {
 				bit.Assign(_n + 1, value);
 			}
 
-			void Set(std::size_t pos, Type &&value) {
-				for (std::size_t i = pos; i <= n; i += Lowbit(i)) {
+			void Set(int pos, const Type &value) {
+				for (int i = pos + 1; i <= n; i += Lowbit(i)) {
 					bit[i] = opt(bit[i], value);
 				}
 			}
 
-			Type Get(std::size_t pos, Type result = Type{}) const {
-				for (std::size_t i = pos; i > 0; i -= Lowbit(i)) {
+			Type Get(int pos, Type result = Type{}) const {
+				for (int i = pos + 1; i > 0; i -= Lowbit(i)) {
 					result = opt(result, bit[i]);
 				}
 				return result;
@@ -50,7 +50,7 @@ namespace Trickster {
 
 		private:
 			std::vector<Type> bit;
-			std::size_t n;
+			int n;
 			const OperatorType opt;
 	};
 }
