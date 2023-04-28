@@ -18,7 +18,7 @@ namespace Trickster {
 			explicit PrefixFenwickTree(std::size_t _n, Type &&initValue = {}, const Operator &opt = Operator{})
 				: bit(_n + 1, initValue), n{_n}, opt{opt} {}
 
-			void Assign(int _n, const Type &value) {
+			void Assign(std::size_t _n, const Type &value) {
 				n = _n;
 				bit.Assign(_n + 1, value);
 			}
