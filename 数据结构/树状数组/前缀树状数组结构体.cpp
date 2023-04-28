@@ -12,7 +12,7 @@ namespace Trickster {
 	class PrefixFenwickTree {
 		public:
 			using Type = _Tp;
-			using Operator = _Operator;
+			using OperatorType = _Operator;
 
 		private:
 			constexpr static std::size_t Lowbit(std::size_t x) noexcept {
@@ -20,7 +20,7 @@ namespace Trickster {
 			}
 
 		public:
-			explicit PrefixFenwickTree(std::size_t _n, Type &&initValue = {}, const Operator &opt = Operator{})
+			explicit PrefixFenwickTree(std::size_t _n, Type &&initValue = {}, const OperatorType &opt = OperatorType{})
 				: bit(_n + 1, initValue), n{_n}, opt{opt} {}
 
 			void Assign(std::size_t _n, const Type &value) {
@@ -51,7 +51,7 @@ namespace Trickster {
 		private:
 			std::vector<Type> bit;
 			std::size_t n;
-			const Operator opt;
+			const OperatorType opt;
 	};
 }
 
