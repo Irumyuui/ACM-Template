@@ -212,7 +212,7 @@
     // "clangd.arguments": [ 
     // "--header-insertion=never", 
     // ],
-    "editor.inlayHints.enabled": "on",
+    "editor.inlayHints.enabled": "offUnlessPressed",
 
     "code-runner.runInTerminal": true,
     "tabout.disableByDefault": false,
@@ -268,25 +268,26 @@
     "clangd.arguments": [
 		// 在后台自动分析文件（基于complie_commands)
 		"--background-index",
-		"--background-index-priority=normal",
+		// "--background-index-priority=normal",
 		// 标记compelie_commands.json文件的目录位置
 		// 关于complie_commands.json如何生成可见我上一篇文章的末尾
 		// https://zhuanlan.zhihu.com/p/84876003
-		"--compile-commands-dir=build",
+		// "--compile-commands-dir=build",
 		// 同时开启的任务数量
 		"-j=14",
 		// 告诉clangd用那个clang进行编译，路径参考which clang++的路径
 		// "--query-driver=/usr/bin/clang++-16",
 		// clang-tidy功能
-		"--clang-tidy",
-		"--clang-tidy-checks=performance-*,bugprone-*",
+		// "--clang-tidy",
+		// "--clang-tidy-checks=performance-*,bugprone-*",
 		// 全局补全（会自动补充头文件）
-		"--all-scopes-completion",
+		// "--all-scopes-completion",
 		// 更详细的补全内容
-		"--completion-style=detailed",
+		// "--completion-style=detailed",
 		// 补充头文件的形式
-		"--header-insertion=iwyu",
+		"--header-insertion=never",
 		// pch优化的位置
 		"--pch-storage=memory",
+        "--inlay-hints=true"
 	],
 }
