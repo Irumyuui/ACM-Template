@@ -1,10 +1,15 @@
 #include <bits/stdc++.h>
 
 namespace Trickster {
-	template <typename _Tp, typename _Operator = std::plus<_Tp>>
-	requires requires(const _Tp a, _Tp b, _Operator op) {
-		{op(a, b)} -> std::convertible_to<_Tp>;
-	} class PrefixFenwickTree {
+	namespace PrefixFenwickTreeAble {
+		template <typename _Opt, typename _Tp>
+		concept OperatorAble = requires(const _Tp a, _Tp b, _Opt op) {
+			{op(a, b)} -> std::convertible_to<_Tp>;
+		};
+	}
+
+	template <typename _Tp, PrefixFenwickTreeAble::OperatorAble<_Tp> _Operator = std::plus<_Tp>>
+	class PrefixFenwickTree {
 		public:
 			using Type = _Tp;
 			using Operator = _Operator;
