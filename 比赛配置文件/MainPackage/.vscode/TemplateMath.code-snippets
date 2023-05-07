@@ -1,0 +1,37 @@
+{
+	"Quick Pow": {
+		"scope": "cpp",
+		"prefix": "_z_qp",
+		"body": [
+			"template <typename _Tp1, typename _Tp2>",
+			"#if __cplusplus >= 202002L",
+			"requires std::is_integral_v<_Tp2>",
+			"#endif",
+			"constexpr _Tp1 Pow(_Tp1 a, _Tp2 i) {",
+			"    _Tp1 ret = 1;",
+			"    for (; i > 0; i >>= 1, a *= a)",
+			"        if (i & 1)",
+			"            ret *= a;",
+			"    return ret;",
+			"}",
+		]
+	},
+	"Quick Pow with MOD": {
+		"scope": "cpp",
+		"prefix": "_z_qp_mod",
+		"body": [
+			"template <typename _Tp1, _Tp1 MOD, typename _Tp2>",
+			"#if __cplusplus >= 202002L",
+			"requires std::is_integral_v<_Tp2> && requires(_Tp1 a) { a %= MOD; }",
+			"#endif",
+			"constexpr _Tp1 Pow(_Tp1 a, _Tp2 i) {",
+			"    a %= MOD;",
+			"    _Tp1 ret = 1;",
+			"    for (; i > 0; i >>= 1, (a *= a) %= MOD)",
+			"        if (i & 1)",
+			"            (ret *= a) %= MOD;",
+			"    return ret;",
+			"}"
+		]
+	}
+}

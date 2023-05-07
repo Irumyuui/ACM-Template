@@ -1,0 +1,75 @@
+{
+	// Place your Cont 工作区 snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"Basic Code": {
+		"scope": "cpp,c++,cxx,cc",
+		"prefix": "code",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"#ifndef ONLINE_JUDGE",
+			// "    #define FMT_HEADER_ONLY",
+			// "    #include \"fmt/format.h\"",
+			// "    #include \"fmt/core.h\"",
+			// "    #include \"fmt/ranges.h\"",
+			// "    #define debug(X) fmt::print(stderr, \"{0}={1}\\n\", #X, X);",
+			"    #include \"debug.hpp\"",
+			"#else",
+			"    #define debug(...)",
+			"#endif",
+			"using namespace std;",
+			"#if __cplusplus >= 202002L",
+			"    namespace rgs = std::ranges;",
+			"#endif",
+			"template <typename _Tp, typename _Cmp = std::greater<_Tp>, typename _Seq = std::vector<_Tp>>",
+			"using PriorityQueue = std::priority_queue<_Tp, _Seq, _Cmp>;",
+			"",
+			"template <typename T> constexpr T inf = std::numeric_limits<T>::max() / 2;",
+			"using i64 = int64_t;",
+			"",
+			"void Main() {",
+			"    $0",
+			"}",
+			"",
+			"std::int32_t main() {",
+			"    std::cin.tie(nullptr)->sync_with_stdio(false);",
+			"    std::cout << std::fixed << std::setprecision(12);",
+			"",
+			"    int32_t tot_test = 1;",
+			"    std::cin >> tot_test;",
+			"",
+			"    for (int test = 1; test <= tot_test; test += 1) {",
+			"        debug(test);",
+			"        Main();",
+			"    }",
+			"}"
+		],
+		"description": "Basic Code"
+	},
+	"Debug Snippet": {
+		"scope": "cpp",
+		"prefix": "_z_debug",
+		"body": [
+			"#ifndef ONLINE_JUDGE",
+			"#include \"debug.hpp\"",
+			"#else",
+			"#define debug(...)",
+			"#endif",
+		],
+		"description": "Debug Code"
+	}
+}
