@@ -38,6 +38,7 @@ int main() {
 		}
 	}
 
+	// 找边双联通分量
 	vector<bool> vis(n + 1);
 	auto dfs = [&](auto &&dfs, int from, vector<int> &ls) -> void {
 		ls.emplace_back(from);
