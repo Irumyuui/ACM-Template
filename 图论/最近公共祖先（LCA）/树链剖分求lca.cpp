@@ -46,5 +46,5 @@ int Lca(int a, int b) {
 	}
 	if (dep[a] > dep[b])
 		std::swap(a, b);
-	return;
+	return a;
 }
