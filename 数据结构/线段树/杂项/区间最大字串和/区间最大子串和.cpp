@@ -2,12 +2,12 @@
 using namespace std;
 
 namespace Royal_Guard {
-	using ll = int64_t;
+	using i64 = int64_t;
 	const int N = 2e5 + 10;
 
 	struct Info {
-		ll val, pre, suf, max_val;
-		Info(const ll &val = {}, const ll &pre = {}, const ll &suf = {}, const ll &max_val = {})
+		i64 val, pre, suf, max_val;
+		Info(const i64 &val = {}, const i64 &pre = {}, const i64 &suf = {}, const i64 &max_val = {})
 			: val{val}, pre{pre}, suf{suf}, max_val{max_val} {}
 		friend Info operator + (const Info &a, const Info &b) {
 			return Info {
@@ -29,7 +29,7 @@ namespace Royal_Guard {
 	template <typename T>
 	void build(int l, int r, int id, const T &a) {
 		if (l == r) {
-			seg[id].val = {a[l], std::max<ll>(0, a[l]), std::max<ll>(0, a[l]), std::max<ll>(0, a[l])};
+			seg[id].val = {a[l], std::max<i64>(0, a[l]), std::max<i64>(0, a[l]), std::max<i64>(0, a[l])};
 		} else {
 			int mid = l + ((r - l) >> 1);
 			build(l, mid, id * 2, a);
