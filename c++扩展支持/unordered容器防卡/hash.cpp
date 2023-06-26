@@ -3,13 +3,13 @@
 struct Splitmix64Hash {
     const std::size_t randomNumber;
     
-    constexpr Splitmix64Hash() noexcept : randomNumber{GetTimeStep()} {}
+    constexpr Splitmix64Hash() noexcept : randomNumber{Splitmix64(GetTimeStep())} {}
     
     constexpr static auto GetTimeStep() noexcept -> std::size_t {
         constexpr auto &tim = __TIME__;
-        return Splitmix64(std::size_t{(tim[0] - '0') * 10 + (tim[1] - '0')} * 3600
+        return std::size_t{(tim[0] - '0') * 10 + (tim[1] - '0')} * 3600
                     + std::size_t{(tim[3] - '0') * 10 + (tim[4] - '0')} * 60
-                    + std::size_t{(tim[5] - '0') * 10 + (tim[6] - '0')});
+                    + std::size_t{(tim[5] - '0') * 10 + (tim[6] - '0')};
     }
     
     constexpr static auto Splitmix64(std::size_t x) noexcept -> std::size_t {
