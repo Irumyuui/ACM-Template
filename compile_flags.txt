@@ -1,6 +1,0 @@
--std=c++20
--Wall
--Wno-misc-unused-alias-decls
--Wno-unused-variable
--DUNICODE
--D_UNICODE
