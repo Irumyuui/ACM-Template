@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace MillerRabin {
+namespace RoyalGuard::Math::MillerRabin {
 	using i64 = int64_t;
 	using u64 = uint64_t;
 	using i128 = __int128_t;
