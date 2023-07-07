@@ -2,10 +2,10 @@
 
 namespace RoyalGuard::IO {
 	namespace Container {
-		void read(std::istream &in, auto &container) {
+		void Read(std::istream &in, std::ranges::range auto &container) {
 			for (auto &value : container) in >> value;
 		}
-		void write(std::ostream &out, const auto &container) {
+		void Write(std::ostream &out, const std::ranges::range auto &container) {
 			auto it = container.begin();
 			if (it == container.end()) return;
 			out << *it; ++ it;
@@ -26,23 +26,23 @@ namespace RoyalGuard::IO {
 
 	template <typename Type, std::size_t N>
 	std::istream& operator >> (std::istream &in, std::array<Type, N> &arr) {
-		Container::read(in, arr);
+		Container::Read(in, arr);
 		return in;
 	}
 	template <typename Type, std::size_t N>
 	std::ostream& operator << (std::ostream &out, const std::array<Type, N> &arr) {
-		Container::write(out, arr);
+		Container::Write(out, arr);
 		return out;
 	}
 
 	template <typename Type>
 	std::istream& operator >> (std::istream &in, std::vector<Type> &vec) {
-		Container::read(in, vec);
+		Container::Read(in, vec);
 		return in;
 	}
 	template <typename Type>
 	std::ostream& operator << (std::ostream &out, const std::vector<Type> &vec) {
-		Container::write(out, vec);
+		Container::Write(out, vec);
 		return out;
 	}
 }
