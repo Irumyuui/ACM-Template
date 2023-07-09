@@ -43,6 +43,16 @@ class DisjointSetUnion {
 			return -dad[Find(x)];
 		}
 
+		int GetSetCount() const {
+			return std::count_if(dad.begin(), dad.end(), [](auto &&size) -> bool {
+				return size <= -1;
+			});
+		}
+
+		int GetVertexCount() const {
+			return dad.size();
+		}
+
 	private:
 		std::vector<int> dad;
 };
