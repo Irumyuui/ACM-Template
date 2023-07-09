@@ -97,7 +97,7 @@ namespace RoyalGuard::DataStructure
 }
 
 
-template <typename Info, typename MergeOpt = std::plus<Info>>
+template <typename Info, std::predicate<Info,Info> MergeOpt = std::plus<Info>>
 class SegmentTree {
 	public:
 		explicit SegmentTree(int size, Info initValue = Info{}, MergeOpt mergeOpt = MergeOpt{})
