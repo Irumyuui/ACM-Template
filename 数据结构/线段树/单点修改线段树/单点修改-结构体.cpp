@@ -95,3 +95,77 @@ namespace RoyalGuard::DataStructure
 			const int n;
 	};
 }
+
+
+template <typename Info, typename MergeOpt = std::plus<Info>>
+class SegmentTree {
+	public:
+		explicit SegmentTree(int size, Info initValue = Info{}, MergeOpt mergeOpt = MergeOpt{})
+			: segTree(size * 4, initValue), mergeOpt{mergeOpt}, initValue{initValue}, N{size - 1} {}
+	
+		template <typename Container, typename Translate>
+		void Build(Container &&con, Translate &&translate) {
+			auto func = [&](auto &&self, int l, int r, int id) -> void {
+				if (l == r) {
+					segTree[id] = translate(con[id]);
+				} else {
+					int mid = l + ((r - l) >> 1);
+					self(self, l, mid, id * 2 + 1);
+					self(self, mid + 1, r, id * 2 + 2);
+					Rise(id);
+				}
+			};
+			func(func, 0, N, root);
+		}
+
+		template <typename Type, typename Translate>
+		void Update(int target, Type value, Translate translate) {
+			auto func = [&](auto &&self, int l, int r, int id) -> void {
+				if (l == r) {
+					segTree[id] = translate(segTree[id], value);
+				} else {
+					int mid = l + ((r - l) >> 1);
+					if (target <= mid) {
+						self(self, l, mid, id * 2 + 1);
+					} else {
+						self(self, mid + 1, r, id * 2 + 2);
+					}
+				}
+			};
+			func(func, 0, N, root);
+		}
+
+		Info RangeQuery(int rgl, int rgr) {
+			if (rgl >= rgr) {
+				return initValue;
+			}
+			return RangeQuery(0, N, root, rgl, rgr - 1);
+		}
+
+	private:
+		void Rise(int id) {
+			segTree[id] = mergeOpt(segTree[id * 2 + 1], segTree[id * 2 + 2]);
+		}
+
+		Info RangeQuery(int l, int r, int id, int ql, int qr) {
+			if (l == ql && r == qr) {
+				return segTree[id];
+			} else {
+				int mid = l + ((r - l) >> 1);
+				if (qr <= mid) {
+					return RangeQuery(l, mid, id * 2 + 1, ql, qr);
+				} else if (ql > mid) {
+					return RangeQuery(mid + 1, r, id * 2 + 2, ql, qr);
+				} else {
+					return mergeOpt(RangeQuery(l, mid, id * 2 + 1, ql, mid), RangeQuery(mid + 1, r, id * 2 + 2, mid + 1, qr));
+				}
+			}
+		}
+
+	private:
+		constexpr static int root = 0;
+		std::vector<Info> segTree;
+		MergeOpt mergeOpt;
+		const Info initValue;
+		const int N;
+};
