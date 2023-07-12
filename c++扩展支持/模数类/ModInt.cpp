@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-namespace RoyalGuard::Math::Type {
+namespace RoyalGuard::Integer {
 	template <int _P>
 	struct ModInt32 {
 		using i64 = std::int64_t;
@@ -82,4 +82,4 @@ namespace RoyalGuard::Math::Type {
 		friend std::ostream & operator << (std::ostream &out, const Modint64_t &x) { out << x.v; return out; }
 	};
 }
-using mint = RoyalGuard::Math::Type::ModInt32<int(1e9 + 7)>;
+using mint = RoyalGuard::Integer::ModInt32<int(1e9 + 7)>;
