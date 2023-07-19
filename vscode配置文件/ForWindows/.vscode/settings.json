@@ -3,12 +3,15 @@
 	"clangd.fallbackFlags": [
 		"-std=c++20",
 		"-Wno-misc-unused-alias-decls",
-		"-Wno-unused-variable"
+		"-Wno-unused-variable",
+		"--target=x86_64-w64-windows-gnu",
+		"-Wno-misc-unused-using-decls"
 	],
 	"clangd.arguments": [
-		"--query-driver=F:/mysy64/mingw64/g++",
+		"--query-driver=F:\\msys64\\mingw64\\bin\\g++.exe",
 		"-j=14",
-		"--pch-storage=memory"
+		"--pch-storage=memory",
+		"--header-insertion=never"
 	],
 	"files.associations": {
 		"any": "cpp",
@@ -99,6 +102,12 @@
 		"variant": "cpp",
 		"expected": "cpp",
 		"spanstream": "cpp",
-		"stacktrace": "cpp"
-	}
+		"stacktrace": "cpp",
+		"format": "cpp",
+		"stdfloat": "cpp",
+		"climits": "cpp"
+	},
+	"clangd.checkUpdates": false,
+	"clangd.path": "c:\\Users\\Ciel\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\16.0.2\\clangd_16.0.2\\bin\\clangd.exe",
+	// "files.maxMemoryForLargeFilesMB": "",
 }

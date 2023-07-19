@@ -1,0 +1,68 @@
+{
+	"Inline Height Tree Link": {
+		"prefix": "InlineHeightTreeLink",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"std::vector<int> dep(n, -1), top(dep), fa(dep), son(dep), siz(dep), dfn(dep), rnk(dep);",
+			"auto Build = [&](int root) -> void {",
+			"\tauto dfs1 = [&](auto &&dfs, int from) -> void {",
+			"\t\tsiz[from] = 1;",
+			"\t\tson[from] = -1;",
+			"\t\tfor (auto to : adj[from]) {",
+			"\t\t\tif (dep[to] != -1) continue;",
+			"\t\t\tdep[to] = dep[from] + 1;",
+			"\t\t\tfa[to] = from;",
+			"\t\t\tdfs(dfs, to);",
+			"\t\t\tsiz[from] += siz[to];",
+			"\t\t\tif (son[from] == -1 || siz[to] > siz[son[from]])",
+			"\t\t\t\tson[from] = to;",
+			"\t\t}",
+			"\t};",
+			"\tauto dfs2 = [&, stamp{-1}](auto &&dfs, int from, int root) mutable -> void {",
+			"\t\ttop[from] = root;",
+			"\t\tdfn[from] = ++ stamp;",
+			"\t\trnk[stamp] = from;",
+			"\t\tif (son[from] == -1)",
+			"\t\t\treturn;",
+			"\t\tdfs(dfs, son[from], from);",
+			"\t\tfor (auto to : adj[from]) ",
+			"\t\t\tif (to != son[from] && to != fa[from])",
+			"\t\t\t\tdfs(dfs, to, to);",
+			"\t};",
+			"\t// std::fill(std::begin(dep), std::end(dep), -1);",
+			"\tdep[root] = -1;",
+			"\tdfs1(dfs1, root);",
+			"\tdfs2(dfs2, root, root);",
+			"};"
+		],
+		"description": "Inline Height Tree Link",
+	},
+	"Inline Adjacency List": {
+		"prefix": "InlineAdjacencyList",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"std::vector adj(n + 1, std::vector<int>{});"
+		],
+		"description": "Adjacency List"
+	},
+	"Array Adjacency List": {
+		"prefix": "ArrayAdjacencyList",
+		"scope": "cpp, c++, cxx",
+		"body": [
+			"constexpr int N = 2e5 + 10;",
+			"struct Edge {",
+			"\tint to, next;",
+			"\tEdge(int to = {}, int next = -1) : to{to}, cap{cap} {}",
+			"};",
+			"std::vector<Edge> edge;",
+			"int head[N];",
+			"",
+			"void Init() {",
+			"\tstd::fill(std::begin(head), std::end(head), -1);",
+			"}",
+			"void AddEdge(int from, int to) {",
+			"\tedge.emplace_back(to, head[from]); head[from] = int(edge.size()) - 1;",
+			"}",
+		]
+	}
+}

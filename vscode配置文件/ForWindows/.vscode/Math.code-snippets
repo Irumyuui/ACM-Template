@@ -1,0 +1,61 @@
+{
+	"Quick Power": {
+		"prefix": "QuickPower",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"template <std::integral Type>",
+			"constexpr Type Pow(Type a, Type i) {",
+			"\tType ret = Type{1};",
+			"\tfor (; i > 0; i >>= 1, a *= a)",
+			"\t\tif (i & 1) {",
+			"\t\t\tret *= a;",
+			"\t\t}",
+			"\treturn ret;",
+			"}",
+		],
+		"description": "Quick Power",
+	},
+	"Inline Quick Power": {
+		"prefix": "InlineQuickPower",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"auto Pow = [&](auto a, std::integral auto i) noexcept -> decltype(a) {",
+			"\tusing Type = decltype(a);",
+			"\tType ret = Type(1);",
+			"\tfor (; i > 0; i >>= 1, a *= a)",
+			"\t\tif (i & 1)",
+			"\t\t\tret *= a;",
+			"\treturn ret;",
+			"};",
+		]
+	},
+	"Inline Quick Power With Mod": {
+		"prefix": "InlineQuickPowerWithMod",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"auto Pow = [&]<std::integral Type>(Type a, std::integral auto i, const std::integral auto MOD) noexcept -> Type {",
+			// "\tusing Type = decltype(a);",
+			"\tType ret = Type(1) % MOD;",
+			"\ta %= MOD;",
+			"\tfor (; i > 0; i >>= 1, (a *= a) %= MOD)",
+			"\t\tif (i & 1)",
+			"\t\t\t(ret *= a) %= MOD;",
+			"\treturn ret;",
+			"};",
+		]
+	},
+	"Inline Combinatorial Number": {
+		"prefix": "InlineCombinatorialNumber",
+		"scope": "c++, cpp, cxx",
+		"body": [
+			"auto Comb = [](i64 n, i64 m) -> i64 {",
+			"\tif (m < 0 || m > n) return 0;",
+			"\ti64 ret = 1;",
+			"\tfor (i64 i = n, j = 1; j <= m; j ++, i --)",
+			"\t\t(ret *= i) /= j;",
+			"\treturn ret;",
+			"};"
+		],
+		"description": "Inline Combinatorial Number"
+	}
+}
