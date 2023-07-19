@@ -6,10 +6,11 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <cstdint>
 
 using namespace std;
 
-using i64 = int64_t;
+using i64 = std::int64_t;
 
 void Main() {
 	int n;
