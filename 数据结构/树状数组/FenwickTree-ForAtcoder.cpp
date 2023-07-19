@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 namespace RoyalGuard::DataStructure {
-	template <typename Type, std::relation<Type,Type> Operator = std::plus<Type>>
+	template <typename Type, typename Operator = std::plus<Type>>
 	class FenwickTree {
 		public:
 			FenwickTree(int size, Type initValue = Type{}, Operator opt = Operator{}) 
