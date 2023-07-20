@@ -30,3 +30,7 @@ void dijkstra(int sta) {
 		}
 	}
 }
+
+struct DijkstraGraph {
+	
+};
