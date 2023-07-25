@@ -1,7 +1,11 @@
 #include <bits/stdc++.h>
 
 namespace RoyalGuard::Integer {
-	template <int _P>
+#if __cplusplus >= 202002L
+	template <int _P> requires (_P >= 1)
+#else
+	template <int _P, std::enable_if<(_P >= 1)>* = nullptr>
+#endif
 	struct ModInt32 {
 		using i64 = std::int64_t;
 		static constexpr int P = _P;
