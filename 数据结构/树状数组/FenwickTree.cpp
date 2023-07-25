@@ -1,39 +1,54 @@
 #include <bits/stdc++.h>
 
 namespace RoyalGuard::DataStructure {
-	template <typename Type, std::relation<Type,Type> Operator = std::plus<Type>>
+
+#if __cplusplus >= 202002L
+	template <
+		typename Type,
+		std::regular_invocable<Type,Type> Operator = std::plus<Type>
+	>
+#else
+	template <
+		typename Type,
+		typename Operator = std::plus<Type>,
+		typename = std::enable_if<std::is_invocable<Operator,Type,Type>::value>::type
+	>
+#endif
 	class FenwickTree {
-		public:
-			FenwickTree(int size, Type initValue = Type{}, Operator opt = Operator{}) 
-				: bit(size + 1, initValue), opt(opt) {}
+	public:
+		explicit FenwickTree(int size, Type initValue = Type{}, Operator opt = Operator{}) 
+			: bit(size + 1, initValue), opt(opt) {}
 
-			void Assign(int size, Type value) {
-				bit.Assign(size, value);
+		auto Assign(int size, Type value) -> void {
+			assert(size >= 0);
+			bit.Assign(size, value);
+		}
+
+		auto Update(int idx, Type dx) -> void {
+			for (int i = idx + 1; i < (int)bit.size(); i += Lowbit(i)) {
+				bit[i] = opt(bit[i], dx);
 			}
+		}
 
-			void Update(int idx, Type dx) {
-				for (int i = idx + 1; i < (int)bit.size(); i += Lowbit(i)) {
-					bit[i] = opt(bit[i], dx);
-				}
+		auto Fill(Type value) -> void {
+			std::fill(bit.begin(), bit.end(), value);
+		}
+
+		auto Get(int idx, Type result = {}) const -> Type {
+			for (int i = idx + 1; i > 0; i -= Lowbit(i)) {
+				result = opt(result, bit[i]);
 			}
+			return result;
+		}
 
-			void Fill(Type value) {
-				std::fill(bit.begin(), bit.end(), value);
-			}
+	private:
+		constexpr static
+		auto Lowbit(int x) noexcept -> int {
+			return x & -x;
+		}
 
-			Type Get(int idx, Type result = {}) const {
-				for (int i = idx + 1; i > 0; i -= Lowbit(i)) {
-					result = opt(result, bit[i]);
-				}
-				return result;
-			}
-
-		private:
-			constexpr static int Lowbit(int x) noexcept {
-				return x & -x;
-			}
-
-			std::vector<Type> bit;
-			Operator opt;
+		std::vector<Type> bit;
+		Operator opt;
 	};
+
 }
