@@ -11,7 +11,7 @@ namespace RoyalGuard::DataStructure {
 	template <
 		typename Type,
 		typename Operator = std::plus<Type>,
-		typename = std::enable_if<std::is_invocable<Operator,Type,Type>::value>::type
+		std::enable_if<std::is_invocable<Operator,Type,Type>::value>* = nullptr
 	>
 #endif
 	class FenwickTree {
