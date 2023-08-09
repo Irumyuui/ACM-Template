@@ -5,13 +5,16 @@
 		"-Wno-misc-unused-alias-decls",
 		"-Wno-unused-variable",
 		"--target=x86_64-w64-windows-gnu",
-		"-Wno-misc-unused-using-decls"
+		"-Wno-misc-unused-using-decls",
+		// "-fmodules-ts"
 	],
 	"clangd.arguments": [
+		// "--query-driver=F:\\CppLib\\winlibs-x86_64-posix-seh-gcc-13.1.0-llvm-16.0.5-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe",
 		"--query-driver=F:\\msys64\\mingw64\\bin\\g++.exe",
 		"-j=14",
-		"--pch-storage=memory",
-		"--header-insertion=never"
+		"--header-insertion=never",
+		"--background-index",
+		"--pch-storage=memory"
 	],
 	"files.associations": {
 		"any": "cpp",
@@ -109,5 +112,7 @@
 	},
 	"clangd.checkUpdates": false,
 	"clangd.path": "c:\\Users\\Ciel\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\16.0.2\\clangd_16.0.2\\bin\\clangd.exe",
+	"C_Cpp.autocomplete": "default",
+	"editor.inlayHints.enabled": "offUnlessPressed",
 	// "files.maxMemoryForLargeFilesMB": "",
 }

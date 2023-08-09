@@ -3,7 +3,11 @@
 		"prefix": "ModInt32",
 		"body": [
 		  "namespace RoyalGuard::Integer {",
-		  "\ttemplate <int _P>",
+		  "#if __cplusplus >= 202002L",
+		  "\ttemplate <int _P> requires (_P >= 1)",
+		  "#else",
+		  "\ttemplate <int _P, std::enable_if<(_P >= 1)>* = nullptr>",
+		  "#endif",
 		  "\tstruct ModInt32 {",
 		  "\t\tusing i64 = std::int64_t;",
 		  "\t\tstatic constexpr int P = _P;",
