@@ -23,7 +23,17 @@ class DisjointSetUnion {
 			if (a > b)
 				std::swap(a, b); 
 			dad[a] += dad[b];
-			dad[a] = b;
+			dad[b] = a;
+			return true;
+		}
+
+		// Merge a to b.
+		bool MergeTo(int a, int b) {
+			a = Find(a); b = Find(b);
+			if (a == b) 
+				return false;
+			dad[a] += dad[b];
+			dad[b] = a;
 			return true;
 		}
 
