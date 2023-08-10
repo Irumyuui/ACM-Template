@@ -27,7 +27,7 @@ class DisjointSetUnion {
 			return true;
 		}
 
-		// Merge a to b.
+		// Merge b to a.
 		bool MergeTo(int a, int b) {
 			a = Find(a); b = Find(b);
 			if (a == b) 
