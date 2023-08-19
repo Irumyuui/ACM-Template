@@ -1,20 +1,24 @@
 {
 	"cmake.configureOnOpen": false,
 	"clangd.fallbackFlags": [
+		// "-I 'C:\\Program Files\\LLVM\\lib\\clang\\16\\include'",
 		"-std=c++20",
 		"-Wno-misc-unused-alias-decls",
 		"-Wno-unused-variable",
 		"--target=x86_64-w64-windows-gnu",
 		"-Wno-misc-unused-using-decls",
+		"-Werror=vla"
 		// "-fmodules-ts"
 	],
 	"clangd.arguments": [
 		// "--query-driver=F:\\CppLib\\winlibs-x86_64-posix-seh-gcc-13.1.0-llvm-16.0.5-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe",
 		"--query-driver=F:\\msys64\\mingw64\\bin\\g++.exe",
-		"-j=14",
+		// "--query-driver=F:\\msys64\\clang64\\bin\\clang++.exe",
+		// "--query-driver='C:\\Program Files\\LLVM\\bin\\clang'",
+		"-j=12",
 		"--header-insertion=never",
 		"--background-index",
-		"--pch-storage=memory"
+		"--pch-storage=memory",
 	],
 	"files.associations": {
 		"any": "cpp",
@@ -114,5 +118,8 @@
 	"clangd.path": "c:\\Users\\Ciel\\AppData\\Roaming\\Code\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\16.0.2\\clangd_16.0.2\\bin\\clangd.exe",
 	"C_Cpp.autocomplete": "default",
 	"editor.inlayHints.enabled": "offUnlessPressed",
+	// "cph.language.cpp.Args": "--target=x86_64-w64-windows-gnu -fsanitize=address -g3 -pipe -std=c++20 -Wno-unused-variable -DUNICODE -D_UNICODE -finput-charset=UTF-8 -fexec-charset=UTF-8 -Wl,--stack=1024000",
+	"cph.language.cpp.Args": "-pipe -std=c++20 -Wno-unused-variable -DUNICODE -D_UNICODE -finput-charset=UTF-8 -fexec-charset=UTF-8 -Wl,--stack=1024000",
+	"cph.language.cpp.Command": "g++",
 	// "files.maxMemoryForLargeFilesMB": "",
 }

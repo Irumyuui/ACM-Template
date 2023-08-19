@@ -7,9 +7,13 @@
 #define THIS_WITH_FMT_HEADER_ONLY
 #endif
 
-#include <fmt/core.h>
-#include <fmt/format.h>
-#include <fmt/ranges.h>
+// #include <fmt/core.h>
+// #include <fmt/format.h>
+// #include <fmt/ranges.h>
+
+#include "fmt-lib/core.h"
+#include "fmt-lib/format.h"
+#include "fmt-lib/ranges.h"
 
 namespace FmtDebugLib::PrintFormat {
 	template <typename Type>
